@@ -2,9 +2,15 @@ app = "flyss01"
 kill_signal = "SIGINT"
 kill_timeout = 5
 primary_region = "nrt"
-processes = []
+processes = ["worker"]
+
+[vm]
+cpu_kind = "shared"
+cpus = 1
+memory = 256
 
 [[services]]
+  processes = ["worker"]
   internal_port = 8388
   protocol = "tcp"
 
@@ -18,8 +24,3 @@ processes = []
   [[services.tcp_checks]]
     interval = 10000
     timeout = 2000
-
-[vm]
-cpu_kind = "shared"
-cpus = 1
-memory = "256mb"

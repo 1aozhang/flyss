@@ -4,10 +4,10 @@ kill_timeout = 5
 primary_region = "nrt"
 processes = []
 
-[vm]
+[[vm]]
 cpu_kind = "shared"
 cpus = 1
-memory = 256
+memory = "256mb"
 
 [[services]]
   internal_port = 8388

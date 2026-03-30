@@ -17,11 +17,9 @@ RUN git clone --depth=1 https://github.com/shadowsocks/simple-obfs.git \
 
 FROM shadowsocks/shadowsocks-libev:latest
 
-COPY --from=builder /out/usr/local/bin/obfs-local /usr/local/bin/obfs-local
-COPY --from=builder /out/usr/local/bin/obfs-server /usr/local/bin/obfs-server
+COPY --from=builder --chmod=755 /out/usr/local/bin/obfs-local /usr/local/bin/obfs-local
+COPY --from=builder --chmod=755 /out/usr/local/bin/obfs-server /usr/local/bin/obfs-server
 COPY config.json /etc/shadowsocks-libev/config.json
-
-RUN chmod +x /usr/local/bin/obfs-local /usr/local/bin/obfs-server
 
 #CMD exec ss-server \
 #      -s $SERVER_ADDR \

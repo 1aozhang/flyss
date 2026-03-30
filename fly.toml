@@ -1,0 +1,25 @@
+app = "flyss01"
+kill_signal = "SIGINT"
+kill_timeout = 5
+primary_region = "nrt"
+processes = []
+
+[[services]]
+  internal_port = 8388
+  protocol = "tcp"
+
+  [services.concurrency]
+    hard_limit = 250
+    soft_limit = 200
+
+  [[services.ports]]
+    port = "44444"
+
+  [[services.tcp_checks]]
+    interval = 10000
+    timeout = 2000
+
+[vm]
+cpu_kind = "shared"
+cpus = 1
+memory = "256mb"

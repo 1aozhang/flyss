@@ -1,4 +1,3 @@
-# 第一阶段：编译 simple-obfs
 FROM debian:bookworm AS builder
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -16,7 +15,6 @@ RUN git clone --depth=1 https://github.com/shadowsocks/simple-obfs.git \
     && make -j"$(nproc)" \
     && make install DESTDIR=/out
 
-# 第二阶段：基于官方 shadowsocks-libev 镜像
 FROM shadowsocks/shadowsocks-libev:latest
 
 COPY --from=builder /out/usr/local/bin/obfs-local /usr/local/bin/obfs-local
@@ -24,9 +22,6 @@ COPY --from=builder /out/usr/local/bin/obfs-server /usr/local/bin/obfs-server
 COPY config.json /etc/shadowsocks-libev/config.json
 
 RUN chmod +x /usr/local/bin/obfs-local /usr/local/bin/obfs-server
-
-# 可选：验证二进制在镜像中
-#RUN command -v obfs-server && command -v obfs-local
 
 #CMD exec ss-server \
 #      -s $SERVER_ADDR \

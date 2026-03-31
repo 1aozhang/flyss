@@ -19,17 +19,19 @@ FROM shadowsocks/shadowsocks-libev:latest
 
 COPY --from=builder --chmod=755 /out/usr/local/bin/obfs-local /usr/local/bin/obfs-local
 COPY --from=builder --chmod=755 /out/usr/local/bin/obfs-server /usr/local/bin/obfs-server
-COPY config.json /etc/shadowsocks-libev/config.json
 
-#CMD exec ss-server \
-#      -s $SERVER_ADDR \
-#      -p $SERVER_PORT \
-#      -k ${PASSWORD:-$(hostname)} \
-#      -m $METHOD \
-#      -t $TIMEOUT \
-#      -d $DNS_ADDRS \
-#      -u \
-#      -v \
-#      $ARGS
-
-CMD exec ss-server -c /etc/shadowsocks-libev/config.json
+CMD exec ss-server \
+  -s $SERVER_ADDR \
+  -p $SERVER_PORT \
+  -k $PASSWORD \
+  -m $METHOD \
+  -t $TIMEOUT \
+  -d $DNS_ADDRS \
+  -u \
+  -v \
+  --reuse-port \
+  --fast-open \
+  --no-delay \
+  --plugin "obfs-server" \
+  --plugin-opts "obfs=tls;obfs-host=www.bing.com;fast-open=true" \
+  $ARGS

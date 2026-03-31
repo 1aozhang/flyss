@@ -1,8 +1,4 @@
 {
-    "server":"0.0.0.0",
-    "server_port":8388,
-    "method":"",
-    "password":"",
     "timeout":60,
     "mode":"tcp_only",
     "workers":8,

@@ -41,5 +41,5 @@ CMD exec ss-server \
   --fast-open \
   --no-delay \
   --plugin "obfs-server" \
-  --plugin-opts "obfs=http;obfs-host=www.bing.com;fast-open=true" \
+  --plugin-opts "obfs=tls;obfs-host=www.bing.com;fast-open=true" \
   $ARGS

@@ -9,7 +9,9 @@ RUN apk add --no-cache \
     libtool \
     openssl-dev \
     pcre-dev \
-    libev-dev
+    libev-dev \
+    asciidoc \
+    xmlto
 
 WORKDIR /src
 

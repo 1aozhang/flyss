@@ -1,8 +1,6 @@
 app = "flyss01"
 kill_signal = "SIGINT"
 kill_timeout = 5
-primary_region = "nrt"
-processes = []
 
 [[vm]]
 cpu_kind = "shared"

@@ -1,9 +1,15 @@
-FROM debian:bookworm AS builder
+FROM alpine:3.12 AS builder
 
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    git ca-certificates build-essential autoconf automake libtool \
-    libssl-dev libpcre3-dev libev-dev asciidoc xmlto pkg-config \
-    && rm -rf /var/lib/apt/lists/*
+RUN apk add --no-cache \
+    git \
+    build-base \
+    linux-headers \
+    autoconf \
+    automake \
+    libtool \
+    openssl-dev \
+    pcre-dev \
+    libev-dev
 
 WORKDIR /src
 

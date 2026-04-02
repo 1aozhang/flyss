@@ -16,7 +16,7 @@ memory = "256mb"
     soft_limit = 200
 
   [[services.ports]]
-    port = "44444"
+    port = "2052"
 
   [[services.tcp_checks]]
     interval = 10000
